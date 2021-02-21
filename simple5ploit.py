@@ -2,7 +2,7 @@
 
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
-from prompt_toolkit import prompt
+from prompt_toolkit import PromptSession
 
 __version__ = "1.0"
 __author__  = "binexisHATT"
@@ -18,15 +18,20 @@ banner = f"""
                        (_)                           (_)
                        (_)                           (_)
 
-                    \033[31;1;4mAuthor\033[0m: {__author__}
-                    \033[31;1;4mGitHub\033[0m: {__repo__}"""
+         \033[31;1;4mAuthor\033[0m: {__author__}
+         \033[31;1;4mGitHub\033[0m: {__repo__}"""
 
 menu = """
-\t\t\t[1] Exploits [5] Utils
-\t\t\t[2] Gather   [6] APIs
-\t\t\t[3] Crypto   [7] Info
-\t\t\t[4] Shells   [8] Exit
+\t [1] Exploits
+\t [2] Gather
+\t [3] Crypto
+\t [4] Shells
+\t [5] Utils
+\t [6] APIs
+\t [7] Info
+\t [8] Exit
 """
+
 def main():
     print(banner)
     options = WordCompleter([str(i) for i in range(1, 8)], ignore_case=True)
@@ -34,17 +39,19 @@ def main():
         "prompt": "#f7ff00"
     })
     message = [("class:prompt", "〔main〕❯ ")]
-    exit = False
-    while not exit:
-        print(menu)
-        try:
-            selected = prompt(
-                message,
+    session = PromptSession(
                 style=style,
                 completer=options,
-                complete_while_typing=False).strip()
-        except (KeyboardInterrupt, EOFError):
-            print("\n\nGoodbye ❌❌❌")
+                complete_while_typing=False
+            )
+    while True:
+        print(menu)
+        try:
+            selected = session.prompt(message).strip()
+        except KeyboardInterrupt:
+            continue
+        except EOFError:
+            print("❌❌❌ Goodbye ❌❌❌")
             break
 
         if selected == "": continue
@@ -57,29 +64,27 @@ def main():
 
         if selected == 1:
             from modules.exploits.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 2:
             from modules.gather.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 3:
             from modules.crypto.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 4:
             from modules.shells.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 5:
             from modules.utils.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 6:
             from modules.apis.cli import cli
-            exit = cli().init()
+            cli().init()
         elif selected == 7:
-            print("\nGoodbye ❌❌❌")
+            print("❌❌❌ Goodbye ❌❌❌")
             break
         else:
             print("[‼] Invalid option")
-    else:
-        print("Goodbye ❌❌❌")
 
 if __name__ == "__main__":
     main()
