@@ -18,8 +18,9 @@ banner = f"""
                        (_)                           (_)
                        (_)                           (_)
 
-         \033[31;1;4mAuthor\033[0m: {__author__}
-         \033[31;1;4mGitHub\033[0m: {__repo__}"""
+         \033[31;1;4mAuthor\033[0m:  {__author__}
+         \033[31;1;4mGitHub\033[0m:  {__repo__}
+         \033[31;1;4mVersion\033[0m: {__version__}"""
 
 menu = """
 \t [1] Exploits
