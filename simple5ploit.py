@@ -63,23 +63,23 @@ def main():
             continue
 
         if selected == 1:
-            from modules.exploits.cli import cli
-            cli().init()
+            from modules.exploits.cli import cli as exploit_cli
+            exploit_cli().init()
         elif selected == 2:
-            from modules.gather.cli import cli
-            cli().init()
+            from modules.gather.cli import cli as gather_cli
+            gather_cli().init()
         elif selected == 3:
-            from modules.crypto.cli import cli
-            cli().init()
+            from modules.crypto.cli import cli as crypto_cli
+            crypto_cli().init()
         elif selected == 4:
-            from modules.shells.cli import cli
-            cli().init()
+            from modules.shells.cli import cli as shell_cli
+            shell_cli().init()
         elif selected == 5:
-            from modules.utils.cli import cli
-            cli().init()
+            from modules.utils.cli import cli as util_cli
+            util_cli().init()
         elif selected == 6:
-            from modules.apis.cli import cli
-            cli().init()
+            from modules.apis.cli import cli as api_cli
+            api_cli().init()
         elif selected == 7:
             print("❌❌❌ Goodbye ❌❌❌")
             break
