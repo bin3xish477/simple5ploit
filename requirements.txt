@@ -1,0 +1,4 @@
+colored
+prompt_toolkit
+pluginlib
+tabulate
