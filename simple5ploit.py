@@ -34,7 +34,7 @@ menu = """
 
 def main():
     print(banner)
-    options = WordCompleter([str(i) for i in range(1, 8)], ignore_case=True)
+    options = WordCompleter([str(i) for i in range(1, 9)], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
     })
