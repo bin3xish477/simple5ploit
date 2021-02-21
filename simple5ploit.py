@@ -81,6 +81,10 @@ def main():
             from modules.apis.cli import cli as api_cli
             api_cli().init()
         elif selected == 7:
+            print("""
+            Print information about each module category!!!
+            """)
+        elif selected == 8:
             print("❌❌❌ Goodbye ❌❌❌")
             break
         else:
