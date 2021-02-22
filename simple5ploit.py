@@ -50,6 +50,7 @@ def main():
         try:
             selected = session.prompt(message).strip()
         except KeyboardInterrupt:
+            print("Press [CTRL+D] to exit")
             continue
         except EOFError:
             print("❌❌❌ Goodbye ❌❌❌")
