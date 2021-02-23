@@ -61,10 +61,10 @@ def main():
             continue
 
         if selected == 1:
-            from modules.exploits.cli import cli as exploit_cli
+            from modules.exploits.internal.cli import cli as exploit_cli
             exploit_cli().init()
         elif selected == 2:
-            from modules.gather.cli import cli as gather_cli
+            from modules.gather.internal.cli import cli as gather_cli
             gather_cli().init()
         elif selected == 3:
             print("""
