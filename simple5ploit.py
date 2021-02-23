@@ -2,7 +2,7 @@
 
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
-from prompt_toolkit import PromptSession
+from prompt_toolkit import prompt
 from argparse import ArgumentParser
 
 __version__ = "1.0"
@@ -37,16 +37,16 @@ def main(args):
     style = Style.from_dict({
         "prompt": "#f7ff00"
     })
-    message = [("class:prompt", "〔main〕❯ ")]
-    session = PromptSession(
-                style=style,
-                completer=options,
-                complete_while_typing=False
-            )
+    message = [("class:prompt", "〔Main〕❯ ")]
     while True:
         print(menu)
         try:
-            selected = session.prompt(message).strip()
+            selected = prompt(
+                    message,
+                    completer=options,
+                    style=style,
+                    complete_while_typing=False
+            ).strip()
         except KeyboardInterrupt:
             print("Press [CTRL+D] to exit")
             continue
@@ -86,7 +86,4 @@ if __name__ == "__main__":
     # takes the port to serve server on
     parser.add_argument("-s", "--server", type=int,
             help="utility server using Python3 `http.server` module")
-    # takes the url string to make HTTP request to
-    parser.add_argument("-c", "--client",
-                        help="utility HTTP client for viewing HTTP response headers")
     main(parser.parse_args())
