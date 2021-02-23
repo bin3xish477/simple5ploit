@@ -1,0 +1,171 @@
+from os import listdir
+from os.path import isfile
+from os.path import abspath
+from os.path import dirname
+from os.path import sep
+from os.path import basename
+from prompt_toolkit.completion import NestedCompleter
+from prompt_toolkit.styles import Style
+from prompt_toolkit import prompt
+from inspect import getmembers
+from inspect import isclass
+from imp import load_source
+from .base import Exploit
+from sys import exit
+from tabulate import tabulate
+
+class cli:
+    _help_ = {
+        "help": "show this help menu",
+        "show": "show all available exploits",
+        "select": "select an exploit",
+        "cls": "clear screen",
+        "back": "go back to previous menu",
+        "exit": "exit program"
+    }
+
+    def __init__(self):
+        self.exploits_path = dirname(abspath(__file__))
+        self.exploits = [f.rstrip(".py")
+                    for i, f in enumerate(listdir(self.exploits_path))
+                    if isfile(f"{self.exploits_path}{sep}{f}")
+                    and f not in (basename(__file__), "base.py")]
+        self.style = Style.from_dict({
+            "prompt": "#ff0000"
+        })
+
+    def show(self):
+        print("\nExploits:")
+        for exploit in self.exploits:
+            print(f"\t\u2022 {exploit}")
+        print()
+
+    def select(self, exploit):
+        mod = __import__(f"modules.exploits.{exploit}", fromlist=["exp"])
+        exploit_class = [c for (_,c) in getmembers(mod, isclass)
+                        if issubclass(c, Exploit) & (c is not Exploit)][0]
+        return self.exploit_prompt(exploit_class())
+
+    def exploit_prompt(self, cls):
+        exploit_args_dict = {arg: None
+                for arg in cls.args.keys()}
+        exploit_menu_dict = {
+            "help": None,
+            "show": None,
+            "info": None,
+            "set": exploit_args_dict,
+            "unset": exploit_args_dict,
+            "run": None,
+            "back": None,
+            "exit": None
+        }
+
+        exploits_help_menu = {
+            "help": "show this help message",
+            "show": "show the current state of exploit arguments",
+            "info": "show general exploit information",
+            "set": "set value",
+            "unset": "unset value",
+            "run": "run exploit",
+            "back": "go back to previous menu",
+            "exit": "exit program"
+        }
+
+        exploit_menu = NestedCompleter.from_nested_dict(exploit_menu_dict)
+        message = [("class:prompt", cls.prompt)]
+        while True:
+            try:
+                selected = prompt(
+                    message,
+                    style=self.style,
+                    completer=exploit_menu,
+                    complete_while_typing=False
+                ).strip()
+            except KeyboardInterrupt:
+                print("Press [CTRL+D] to exit")
+                continue
+            except EOFError:
+                print("❌❌❌ Goodbye ❌❌❌")
+                exit(1)
+
+            if selected == "help":
+                table = tabulate(
+                        [[k, v] for k, v in exploits_help_menu.items()],
+                        headers=["Command", "Description"])
+                print(table)
+            elif selected == "show":
+                table = tabulate(
+                        [[arg, cls.__dict__[arg]] for arg in cls.args.keys()],
+                        headers=["Argument", "Value"])
+                print(table)
+            elif selected == "info":
+                table = tabulate([[k, v] for k, v in cls.info.items()],
+                        headers=["Key", "Value"])
+                print(table)
+            elif "unset" in selected:
+                cls.__dict__[select.split()[-1].strip()] = ""
+            elif "set" in selected:
+                selected = selected.split()
+                arg, val = selected[1].strip(), " ".join(selected[2:])
+                cls.__dict__[arg] = val
+            elif selected == "run":
+                cls.run()
+            elif selected == "back":
+                return exit
+            elif selected == "exit":
+                print("❌❌❌ Goodbye ❌❌❌")
+                exit(0)
+
+    def help(self):
+        print(self._help_)
+
+    def init(self):
+        menu = NestedCompleter.from_nested_dict({
+            "help": None,
+            "show": None,
+            "select": {exploit: None for exploit in self.exploits},
+            "cls": None,
+            "back": None,
+            "exit": None
+        })
+
+        message = [("class:prompt", "〔exploits〕❯ ")]
+        while True:
+            try:
+                selected = prompt(
+                    message,
+                    style=self.style,
+                    completer=menu,
+                    complete_while_typing=False
+                ).strip()
+            except KeyboardInterrupt:
+                print("Press [CTRL+D] to exit")
+                continue
+            except EOFError:
+                print("❌❌❌ Goodbye ❌❌❌")
+                exit(1)
+
+            if selected == "show":
+                self.show()
+            elif "select" in selected:
+                selected = selected.split()
+                if len(selected) == 1 or selected[-1] == "":
+                    print("Must provide exploit name to use, try `show` command")
+                    continue
+                exploit = selected[-1].strip()
+                if exploit not in self.exploits:
+                    print(f"{exploit} is not a valid exploit, try `show` command")
+                    continue
+                self.select(exploit)
+                print(selected)
+            elif selected == "help":
+                table = tabulate([[k, v] for k, v in self._help_.items()],
+                        headers=["Command", "Description"])
+                print(table)
+            elif selected == "cls":
+                print("\n"*75)
+            elif selected in ("back"):
+                break
+            elif selected == "exit":
+                print("❌❌❌ Goodbye ❌❌❌")
+                exit(0)
