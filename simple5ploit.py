@@ -3,6 +3,7 @@
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 from prompt_toolkit import PromptSession
+from argparse import ArgumentParser
 
 __version__ = "1.0"
 __author__  = "binexisHATT"
@@ -29,8 +30,9 @@ menu = """
 \t [4] Exit
 """
 
-def main():
-    print(banner)
+def main(args):
+    if not args.quite:
+        print(banner)
     options = WordCompleter([str(i) for i in range(1, 5)], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
@@ -77,4 +79,14 @@ def main():
             print("[‼] Invalid option")
 
 if __name__ == "__main__":
-    main()
+    parser = ArgumentParser()
+    parser.add_argument("-q", "--quite", action="store_true", help="Don't print bannger")
+    parser.add_argument("-l", "--load", choice=("exploits", "gather"),
+                        help="Specify which module category to load (skip main menu)")
+    # uses response.headers attribute from `requests`
+    parser.add_argument("-s", "--server", action="store_true",
+                        help="utility server using Python3 `http.server` module")
+    # takes the url string to make HTTP request to
+    parser.add_argument("-c", "--client",
+                        help="utility HTTP client for viewing HTTP response headers")
+    main(parser.parse_args())
