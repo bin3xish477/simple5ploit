@@ -81,11 +81,11 @@ def main(args):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("-q", "--quite", action="store_true", help="Don't print bannger")
-    parser.add_argument("-l", "--load", choice=("exploits", "gather"),
+    parser.add_argument("-l", "--load", choices=("exploits", "gather"),
                         help="Specify which module category to load (skip main menu)")
-    # uses response.headers attribute from `requests`
-    parser.add_argument("-s", "--server", action="store_true",
-                        help="utility server using Python3 `http.server` module")
+    # takes the port to serve server on
+    parser.add_argument("-s", "--server", type=int,
+            help="utility server using Python3 `http.server` module")
     # takes the url string to make HTTP request to
     parser.add_argument("-c", "--client",
                         help="utility HTTP client for viewing HTTP response headers")
