@@ -25,17 +25,13 @@ banner = f"""
 menu = """
 \t [1] Exploits
 \t [2] Gather
-\t [3] Crypto
-\t [4] Shells
-\t [5] Utils
-\t [6] APIs
-\t [7] Info
-\t [8] Exit
+\t [3] Info
+\t [4] Exit
 """
 
 def main():
     print(banner)
-    options = WordCompleter([str(i) for i in range(1, 9)], ignore_case=True)
+    options = WordCompleter([str(i) for i in range(1, 5)], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
     })
@@ -71,22 +67,10 @@ def main():
             from modules.gather.cli import cli as gather_cli
             gather_cli().init()
         elif selected == 3:
-            from modules.crypto.cli import cli as crypto_cli
-            crypto_cli().init()
-        elif selected == 4:
-            from modules.shells.cli import cli as shell_cli
-            shell_cli().init()
-        elif selected == 5:
-            from modules.utils.cli import cli as util_cli
-            util_cli().init()
-        elif selected == 6:
-            from modules.apis.cli import cli as api_cli
-            api_cli().init()
-        elif selected == 7:
             print("""
             Print information about each module category!!!
             """)
-        elif selected == 8:
+        elif selected == 4:
             print("❌❌❌ Goodbye ❌❌❌")
             break
         else:
