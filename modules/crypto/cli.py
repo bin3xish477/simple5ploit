@@ -18,7 +18,7 @@ class cli():
 
     def init(self):
         menu_words = WordCompleter(self._menu_.keys(), ignore_case=True)
-        message = [("class:prompt", "〔crypto〕❯ ")]
+        message = [("class:prompt", "〔util〕❯ ")]
         while True:
             try:
                 selected = prompt(
