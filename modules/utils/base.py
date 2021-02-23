@@ -1,4 +1,4 @@
-class Crypto:
+class Util:
 	def __init__(self):
 		self.info = {
 			"Author": "N/a",
