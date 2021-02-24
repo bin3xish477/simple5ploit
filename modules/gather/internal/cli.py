@@ -217,3 +217,5 @@ class cli:
             elif selected == "exit":
                 print("❌❌❌ Goodbye ❌❌❌")
                 exit(0)
+            else:
+                print(f"`{selected}` is not a valid command! Type `help` for help menu")

@@ -30,6 +30,11 @@ menu = """
 \t [4] Exit
 """
 
+info = """
+    Exploits : contains exploits offered by simple5ploit
+    Gather   : contains scripts created for information gathering
+"""
+
 def main(args):
     if not args.quite:
         print(banner)
