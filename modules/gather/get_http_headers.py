@@ -5,10 +5,12 @@ from tabulate import tabulate
 class GetHTTPHeaders(Gather):
     def __init__(self):
         super().__init__()
-        self.prompt = "❯ "
+        self.prompt = "GetHTTPHeaders ❯ "
 
         self.args = {
-            "url": "the URL to make request to and parse headers for"
+            "url":
+                { "description": "the URL to make request to and parse headers for",
+                  "required": True }
         }
 
         for arg in self.args.keys():
