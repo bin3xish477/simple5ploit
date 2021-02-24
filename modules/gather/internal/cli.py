@@ -20,7 +20,7 @@ from subprocess import run as sh
 class cli:
     _help_ = {
         "help": "show this help menu",
-        "show": "show all available information gathering scripts",
+        "list": "list all available information gathering scripts",
         "select": "select a script",
         "sh": "run shell command on local system",
         "cls": "clear screen",
@@ -38,7 +38,7 @@ class cli:
             "prompt": "#00ff00"
         })
 
-    def show(self):
+    def list(self):
         print("Scripts:")
         for script in self.scripts:
             print(f"\t\u2022 {script}")
@@ -166,7 +166,7 @@ class cli:
     def init(self):
         menu = NestedCompleter.from_nested_dict({
             "help": None,
-            "show": None,
+            "list": None,
             "select": {script: None for script in self.scripts},
             "sh": None,
             "cls": None,
@@ -193,8 +193,8 @@ class cli:
                 print("❌❌❌ Goodbye ❌❌❌")
                 exit(1)
 
-            if selected == "show":
-                self.show()
+            if selected == "list":
+                self.list()
             elif selected.startswith("select"):
                 selected = selected.split()
                 if len(selected) == 1 or selected[-1] == "":
