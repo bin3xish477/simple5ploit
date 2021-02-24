@@ -137,6 +137,8 @@ class cli:
                         cls.run()
                     except NotImplementedError:
                         print("[X] This exploits `run` function has not been implemented")
+                    except:
+                        print("[X] An error occurred while running the exploit")
             elif selected.startswith("sh "):
                 cmd = selected.split()[1:]
                 if cmd:
