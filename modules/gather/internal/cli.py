@@ -99,7 +99,7 @@ class cli:
             if selected == "help":
                 table = tabulate(
                         [[k, v] for k, v in gather_help_menu.items()],
-                        headers=["Command", "Description"]
+                        headers=["Command", "Description"],
                         tablefmt="fancy_grid")
                 print(table)
             elif selected == "show":
