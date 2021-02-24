@@ -124,10 +124,19 @@ class cli:
                 arg, val = selected[1].strip(), " ".join(selected[2:])
                 cls.__dict__[arg] = val
             elif selected == "run":
-                try:
-                    cls.run()
-                except NotImplementedError:
-                    print("[X] This exploits `run` function has not been implemented")
+                all_set = True
+                for arg, values in cls.args.items():
+                    if values["required"] and (
+                        not cls.__dict__[arg]
+                        or cls.__dict__[arg].lower() == "n/a"):
+                        print("!"*70)
+                        print(f"``{arg}`` must be set before running this script")
+                        all_set = False
+                if all_set:
+                    try:
+                        cls.run()
+                    except NotImplementedError:
+                        print("[X] This exploits `run` function has not been implemented")
             elif selected.startswith("sh "):
                 cmd = selected.split()[1:]
                 if cmd:

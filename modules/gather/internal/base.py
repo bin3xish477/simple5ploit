@@ -3,7 +3,7 @@ class Gather:
 		self.info = {
                     "Author": "N/a",
                     "Author Repo": "N/a",
-                    "Short Description": "N/a",
+                    "Description": "N/a",
                     "Date Completed": "N/a"
 		}
 		# For custom prompt, default is set below
