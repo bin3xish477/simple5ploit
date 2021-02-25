@@ -1,5 +1,5 @@
 # simple5ploit
-An exploitation framework designed for Python3 scripts
+`simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts. `simple5ploit` was created as a contribution focused project which is why is doesn't provide many modules by default. I wanted to create a tool that anyone who knows basic Python can contribute to (check out the other sections of this README file). Most of the exploits being written today are in Python so I thought it would be awesome to create a tool to manage these Python exploits. `simple5ploit` allows users to easily select and use exploits like the well-known `msfconsole` exploitation tool. 
 
 ### Setup
 

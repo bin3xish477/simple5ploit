@@ -20,7 +20,8 @@ from subprocess import run as sh
 class cli:
     _help_ = {
         "help": "show this help menu",
-        "list": "list all available information gathering scripts",
+        "list": "list all available gathering scripts",
+        "search": "use search string to find scripts",
         "select": "select a script",
         "sh": "run shell command on local system",
         "cls": "clear screen",
@@ -55,7 +56,7 @@ class cli:
                 for arg in cls.args.keys()}
         gather_menu_dict = {
             "help": None,
-            "show": None,
+            "options": None,
             "info": None,
             "set": gather_args_dict,
             "unset": gather_args_dict,
@@ -68,7 +69,7 @@ class cli:
 
         gather_help_menu = {
             "help": "show this help message",
-            "show": "show the current state of script arguments",
+            "options": "show script options",
             "info": "show script information",
             "set": "set value",
             "unset": "unset value",
@@ -102,7 +103,7 @@ class cli:
                         headers=["Command", "Description"],
                         tablefmt="fancy_grid")
                 print(table)
-            elif selected == "show":
+            elif selected == "options":
                 table = tabulate(
                         [[arg, cls.__dict__[arg]] for arg in cls.args.keys()],
                         headers=["Argument", "Value"],
@@ -139,7 +140,7 @@ class cli:
                         print("[X] This exploits `run` function has not been implemented")
                     except:
                         print("[X] An error occurred while running the exploit")
-            elif selected.startswith("sh "):
+            elif selected.startswith("sh"):
                 cmd = selected.split()[1:]
                 if cmd:
                     try:
@@ -167,6 +168,7 @@ class cli:
         menu = NestedCompleter.from_nested_dict({
             "help": None,
             "list": None,
+            "search": None,
             "select": {script: None for script in self.scripts},
             "sh": None,
             "cls": None,
@@ -195,6 +197,13 @@ class cli:
 
             if selected == "list":
                 self.list()
+            elif selected.startswith("search"):
+                s = ' '.join(selected.split()[1:])
+                print("Matched Scripts:")
+                for script in self.scripts:
+                    if s in script:
+                        print(f"\t* {script}")
+                print()
             elif selected.startswith("select"):
                 selected = selected.split()
                 if len(selected) == 1 or selected[-1] == "":
