@@ -17,8 +17,7 @@ Show images of simple5ploit here!!!
 
 1. Fork simple5ploit's repo
 2. Watch this [video](https://www.youtube.com/watch?v=nT8KGYVurIU) on how to fork and make pull requests if you don't know how to do so already
-3. I'll add your exploit or gather module to simple5ploit
-
+3. Make a pull request with your exploit or gather module and I'll add your exploit or gather module to simple5ploit
 
 ### Creating an Exploit/Gather Module
 
