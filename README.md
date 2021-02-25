@@ -7,6 +7,19 @@ An exploitation framework designed for Python3 scripts
 python3 -m pip install -r requirements.txt
 ```
 
+### Simple5ploit's Interface
+
+Show images of simple5ploit here!!!
+- show autocompletion
+- show table output from help, info, and show commands
+
+### Contributing to Simple5ploit
+
+1. Fork simple5ploit's repo
+2. Watch this [video](https://www.youtube.com/watch?v=nT8KGYVurIU) on how to fork and make pull requests if you don't know how to do so already
+3. I'll add your exploit or gather module to simple5ploit
+
+
 ### Creating an Exploit/Gather Module
 
 
@@ -91,4 +104,12 @@ class SomeGatherModule(Gather):
     If it's not implemented, a ```NotImplementedError``` will be raised.
     """
     pass
+```
+
+### Simple5ploit Server
+
+Quickly launch a Python HTTP server with:
+
+```
+simple5plit -s [port]
 ```
