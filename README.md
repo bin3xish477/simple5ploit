@@ -44,7 +44,12 @@ class SomeExploit(Exploit):
     for arg in self.args:
       self.__dict__[arg] = "N/a"
       
-
+  def run(self):
+    """
+    This function is where the exploit code should be placed.
+    If it's not implemented, a ```NotImplementedError``` will be raised.
+    """
+    pass
 """
 ----------------------------
 GATHER MODULE EXAMPLE
@@ -76,4 +81,11 @@ class SomeGatherModule(Gather):
     # ::they could also be set to empty string
     for arg in self.args:
       self.__dict__[arg] = "N/a"
+      
+  def run(self):
+    """
+    This function is where the code for this gather module should be placed.
+    If it's not implemented, a ```NotImplementedError``` will be raised.
+    """
+    pass
 ```
