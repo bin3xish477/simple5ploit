@@ -50,6 +50,9 @@ class SomeExploit(Exploit):
     If it's not implemented, a ```NotImplementedError``` will be raised.
     """
     pass
+    
+# ***************************************************************************************************
+    
 """
 ----------------------------
 GATHER MODULE EXAMPLE
