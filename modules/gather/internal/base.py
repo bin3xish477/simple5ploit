@@ -9,6 +9,7 @@ class Gather:
 		# For custom prompt, default is set below
 		self.prompt = "❯ "
 		self.args = {}
+		self.pip_dependencies = []
 
 	def run(self):
 		raise NotImplementedError
