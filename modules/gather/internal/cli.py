@@ -34,7 +34,6 @@ class cli:
             self.script = script.replace("gather::", '')
         else:
             self.script = script
-        print(self.script)
         self.gather_scripts_path = dirname(abspath(__file__)).replace("/internal", "")
         self.scripts = [f.rstrip(".py")
             for f in listdir(self.gather_scripts_path)
