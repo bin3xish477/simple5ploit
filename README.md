@@ -47,8 +47,9 @@ class SomeExploit(Exploit):
     # exploit module arguments dict
     self.args = {
       "some_argument":
-        "description": "an argument for this example exploit class",
-        "required": True
+        {
+          "description": "an argument for this example exploit class",
+          "required": True }
     }
     
     # initializing class variables for exploit arguments with values set to `N/a`
@@ -88,8 +89,9 @@ class SomeGatherModule(Gather):
     # gather module arguments dict
     self.args = {
       "some_argument":
-        "description": "an argument for this example gather module class",
-        "required": True
+        {
+          "description": "an argument for this example gather module class",
+          "required": True }
     }
     
     # initializing class variables for script arguments with values set to `N/a`
