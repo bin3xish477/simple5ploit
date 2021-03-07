@@ -29,12 +29,16 @@ class cli:
         "exit": "exit program"
     }
 
-    def __init__(self):
+    def __init__(self, script=None):
+        if script:
+            self.script = script.replace("gather::", '')
+        else:
+            self.script = script
+        print(self.script)
         self.gather_scripts_path = dirname(abspath(__file__)).replace("/internal", "")
         self.scripts = [f.rstrip(".py")
-                    for i, f in enumerate(listdir(self.gather_scripts_path))
-                    if isfile(f"{self.gather_scripts_path}{sep}{f}")
-                    and f not in (basename(__file__), "base.py")]
+            for f in listdir(self.gather_scripts_path)
+            if isfile(f"{self.gather_scripts_path}{sep}{f}") ]
         self.style = Style.from_dict({
             "prompt": "#00ff00"
         })
@@ -49,7 +53,8 @@ class cli:
         mod = __import__(f"modules.gather.{script}", fromlist=["exp"])
         gather_class = [c for (_,c) in getmembers(mod, isclass)
                         if issubclass(c, Gather) & (c is not Gather)][0]
-        return self.gather_prompt(gather_class())
+        self.script = None
+        self.gather_prompt(gather_class())
 
     def gather_prompt(self, cls):
         gather_args_dict = {arg: None
@@ -182,60 +187,63 @@ class cli:
         )
         message = [("class:prompt", "〔Gather〕❯ ")]
         while True:
-            try:
-                selected = self.session.prompt(
-                    message,
-                    style=self.style,
-                    completer=menu,
-                ).strip()
-            except KeyboardInterrupt:
-                print("Press [CTRL+D] to exit")
-                continue
-            except EOFError:
-                print("❌❌❌ Goodbye ❌❌❌")
-                exit(1)
+            if not self.script:
+                try:
+                    selected = self.session.prompt(
+                        message,
+                        style=self.style,
+                        completer=menu,
+                    ).strip()
+                except KeyboardInterrupt:
+                    print("Press [CTRL+D] to exit")
+                    continue
+                except EOFError:
+                    print("❌❌❌ Goodbye ❌❌❌")
+                    exit(1)
 
-            if selected == "list":
-                self.list()
-            elif selected.startswith("search"):
-                s = ' '.join(selected.split()[1:])
-                print("Matched Scripts:")
-                for script in self.scripts:
-                    if s in script:
-                        print(f"\t* {script}")
-                print()
-            elif selected.startswith("select"):
-                selected = selected.split()
-                if len(selected) == 1 or selected[-1] == "":
-                    print("Must provide an exploit by name to use, try `show` command")
-                    continue
-                script = selected[-1].strip()
-                if script not in self.scripts:
-                    print(f"{exploit} is not a valid exploit, try `show` command")
-                    continue
-                self.select(script)
-            elif selected == "help":
-                table = tabulate([[k, v] for k, v in self._help_.items()],
-                        headers=["Command", "Description"],
-                        tablefmt="fancy_grid")
-                print(table)
-            elif selected.startswith("sh"):
-                cmd = selected.split()[1:]
-                if cmd:
-                    try:
-                        out = sh(cmd, capture_output=True).stdout
-                    except:
-                        cmd = ' '.join(cmd)
-                        print(f"unable to run command: `{cmd}`")
+                if selected == "list":
+                    self.list()
+                elif selected.startswith("search"):
+                    s = ' '.join(selected.split()[1:])
+                    print("Matched Scripts:")
+                    for script in self.scripts:
+                        if s in script:
+                            print(f"\t* {script}")
+                    print()
+                elif selected.startswith("select"):
+                    selected = selected.split()
+                    if len(selected) == 1 or selected[-1] == "":
+                        print("Must provide an exploit by name to use, try `show` command")
                         continue
-                    print(out.decode("utf8"))
-                else: print("`sh` command used but no shell command was specified")
-            elif selected == "cls":
-                print("\n"*75)
-            elif selected in ("back"):
-                break
-            elif selected == "exit":
-                print("❌❌❌ Goodbye ❌❌❌")
-                exit(0)
+                    script = selected[-1].strip()
+                    if script not in self.scripts:
+                        print(f"{exploit} is not a valid exploit, try `show` command")
+                        continue
+                    self.select(script)
+                elif selected == "help":
+                    table = tabulate([[k, v] for k, v in self._help_.items()],
+                            headers=["Command", "Description"],
+                            tablefmt="fancy_grid")
+                    print(table)
+                elif selected.startswith("sh"):
+                    cmd = selected.split()[1:]
+                    if cmd:
+                        try:
+                            out = sh(cmd, capture_output=True).stdout
+                        except:
+                            cmd = ' '.join(cmd)
+                            print(f"unable to run command: `{cmd}`")
+                            continue
+                        print(out.decode("utf8"))
+                    else: print("`sh` command used but no shell command was specified")
+                elif selected == "cls":
+                    print("\n"*75)
+                elif selected in ("back"):
+                    break
+                elif selected == "exit":
+                    print("❌❌❌ Goodbye ❌❌❌")
+                    exit(0)
+                else:
+                    print(f"`{selected}` is not a valid command! Type `help` for help menu")
             else:
-                print(f"`{selected}` is not a valid command! Type `help` for help menu")
+                self.select(script=self.script)

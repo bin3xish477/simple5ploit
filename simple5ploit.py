@@ -4,6 +4,12 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 from prompt_toolkit import prompt
 from argparse import ArgumentParser
+from utils.server import serve
+from modules.exploits.internal.cli import cli as exploit_cli
+from modules.gather.internal.cli import cli as gather_cli
+from os.path import isfile
+from os import listdir
+from os import sep
 
 __version__ = "1.0"
 __author__  = "Alexis Rodriguez"
@@ -26,19 +32,36 @@ banner = f"""
 menu = """
 \t [1] Exploits
 \t [2] Gather
-\t [3] Info
-\t [4] Exit
-"""
-
-info = """
-    Exploits : contains exploits offered by simple5ploit
-    Gather   : contains scripts created for information gathering
+\t [3] Exit
 """
 
 def main(args):
+    exploits_path = "./modules/exploits"
+    gather_path   = "./modules/gather"
+    exploit_modules = [ f"exploit::{f}" for f in listdir(exploits_path) if isfile(f"{exploits_path}{sep}{f}") ]
+    gather_modules  = [ f"gather::{f}" for f in listdir(gather_path) if isfile(f"{gather_path}{sep}{f}") ]
+    modules = list(map(lambda s: s.rstrip(".py"), exploit_modules + gather_modules))
+    if args.server:
+        serve(args.server)
+        return
+    if args.list_modules:
+        print("\n# Available Modules #\n")
+        for module in modules:
+            print(f"\t\u2022 {module}")
+        return
+    
+    if args.module:
+        if args.module not in modules:
+            print(f"[X] {args.module} is not a valid module, " \
+                    "use the `-l` arg to list available modules")
+            return
+        if "exploit::" in args.module:
+            exploit_cli(exploit=args.module).init()
+        else:
+            gather_cli(script=args.module).init()
     if not args.quite:
         print(banner)
-    options = WordCompleter([str(i) for i in range(1, 5)], ignore_case=True)
+    options = WordCompleter([str(i) for i in range(1, 4)], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
     })
@@ -68,16 +91,10 @@ def main(args):
             continue
 
         if selected == 1:
-            from modules.exploits.internal.cli import cli as exploit_cli
             exploit_cli().init()
         elif selected == 2:
-            from modules.gather.internal.cli import cli as gather_cli
             gather_cli().init()
         elif selected == 3:
-            print("""
-            Print information about each module category!!!
-            """)
-        elif selected == 4:
             print("❌❌❌ Goodbye ❌❌❌")
             break
         else:
@@ -85,10 +102,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("-q", "--quite", action="store_true", help="Don't print bannger")
-    parser.add_argument("-l", "--load", choices=("exploits", "gather"),
-                        help="Specify which module category to load (skip main menu)")
-    # takes the port to serve server on
-    parser.add_argument("-s", "--server", type=int,
-            help="utility server using Python3 `http.server` module")
+    parser.add_argument("-q", "--quite", action="store_true", help="don't print simple5ploit banner")
+    parser.add_argument("-l", "--list-modules", action="store_true", help="list all available modules")
+    parser.add_argument("-m", "--module", help="specify module to load")
+    parser.add_argument("-s", "--server", type=int, metavar="PORT",
+            help="HTTP server using `http.server` module")
     main(parser.parse_args())
