@@ -36,8 +36,9 @@ menu = """
 """
 
 def main(args):
-    exploits_path = "simple5ploit/modules/exploits"
-    gather_path   = "simple5ploit/modules/gather"
+    path = __file__.replace(f"{sep}{__name__}.py", '')
+    exploits_path = f"{path}{sep}modules{sep}exploits"
+    gather_path   = f"{path}{sep}modules{sep}gather"
     exploit_modules = [ f"exploit::{f}" for f in listdir(exploits_path) if isfile(f"{exploits_path}{sep}{f}") ]
     gather_modules  = [ f"gather::{f}" for f in listdir(gather_path) if isfile(f"{gather_path}{sep}{f}") ]
     modules = list(map(lambda s: s.rstrip(".py"), exploit_modules + gather_modules))

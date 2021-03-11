@@ -11,7 +11,7 @@ classifiers = [ "License :: OSI Approved :: MIT License",]
 description-file = "README.md"
 
 requires = [
-  "prompt_tookit",
+  "prompt_toolkit",
   "tabulate",
   "python3-nmap",
 ]

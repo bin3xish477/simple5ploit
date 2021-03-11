@@ -4,8 +4,11 @@
 ### Setup
 
 ```
-python3 -m pip install -r requirements.txt
+python3 -m pip install simple5ploit
 ```
+
+- built with `flit`
+  - `pip3 install flit && flit build`
 
 ### Simple5ploit's Interface
 
