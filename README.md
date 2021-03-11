@@ -7,7 +7,7 @@
 python3 -m pip install simple5ploit
 ```
 
-- built with `flit`
+- built with `flit` and uploaded to test.pyp.org with `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
   - `pip3 install flit && flit build`
 
 ### Simple5ploit's Interface
