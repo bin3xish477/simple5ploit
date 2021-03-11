@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "simple5ploit"
+author = "Alexis Rodriguez"
+author-email = "rodriguez10011999@gmail.com"
+home-page = "https://github.com/binexisHATT/simple5ploit"
+classifiers = [ "License :: OSI Approved :: MIT License",]
+description-file = "README.md"
+
+requires = [
+  "prompt_tookit",
+  "tabulate",
+  "python3-nmap",
+]

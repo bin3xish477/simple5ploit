@@ -4,16 +4,16 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 from prompt_toolkit import prompt
 from argparse import ArgumentParser
-from utils.server import serve
-from modules.exploits.internal.cli import cli as exploit_cli
-from modules.gather.internal.cli import cli as gather_cli
+from .utils.server import serve
+from .modules.exploits.internal.cli import cli as exploit_cli
+from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
 from os import listdir
 from os import sep
+from .__init__ import __version__
+from .__init__ import __author__
+from .__init__ import __repo__
 
-__version__ = "1.0"
-__author__  = "Alexis Rodriguez"
-__repo__    = "https://github.com/binexisHATT"
 
 banner = f"""
   _____   _                   __         _____              __         _  _
@@ -36,8 +36,8 @@ menu = """
 """
 
 def main(args):
-    exploits_path = "./modules/exploits"
-    gather_path   = "./modules/gather"
+    exploits_path = "simple5ploit/modules/exploits"
+    gather_path   = "simple5ploit/modules/gather"
     exploit_modules = [ f"exploit::{f}" for f in listdir(exploits_path) if isfile(f"{exploits_path}{sep}{f}") ]
     gather_modules  = [ f"gather::{f}" for f in listdir(gather_path) if isfile(f"{gather_path}{sep}{f}") ]
     modules = list(map(lambda s: s.rstrip(".py"), exploit_modules + gather_modules))

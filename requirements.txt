@@ -1,4 +1,0 @@
-prompt_toolkit
-pluginlib
-tabulate
-python3-nmap
