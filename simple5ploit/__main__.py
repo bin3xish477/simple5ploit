@@ -10,9 +10,9 @@ from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
 from os import listdir
 from os import sep
-from simple5ploit.__init__ import __version__
-from simple5ploit.__init__ import __author__
-from simple5ploit.__init__ import __repo__
+from .__init__ import __version__
+from .__init__ import __author__
+from .__init__ import __repo__
 
 
 banner = f"""
