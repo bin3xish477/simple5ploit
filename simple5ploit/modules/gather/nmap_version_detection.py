@@ -2,6 +2,7 @@ from .internal.base import Gather
 
 class NmapVersionDetection(Gather):
     def __init__(self):
+        super().__init__()
         self.prompt = "nmap_version_detection % "
         self.args = {
             "host" : 

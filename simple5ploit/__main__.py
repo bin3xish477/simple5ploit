@@ -4,15 +4,15 @@ from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 from prompt_toolkit import prompt
 from argparse import ArgumentParser
-from .utils.server import serve
-from .modules.exploits.internal.cli import cli as exploit_cli
+from simple5ploit.utils.server import serve
+from simple5ploit.modules.exploits.internal.cli import cli as exploit_cli
 from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
 from os import listdir
 from os import sep
-from .__init__ import __version__
-from .__init__ import __author__
-from .__init__ import __repo__
+from simple5ploit.__init__ import __version__
+from simple5ploit.__init__ import __author__
+from simple5ploit.__init__ import __repo__
 
 
 banner = f"""
