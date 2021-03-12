@@ -30,10 +30,13 @@ Show images of simple5ploit here!!!
 """
 -------------------------------
 EXPLOIT MODULE EXAMPLE
+
+Exploit modules belong in the path:
+simple5ploit/modules/exploits
 -------------------------------
 """
 # importing the parent exploit class
-from modules.exploits.internal.base import Exploit
+from .internal.base import Exploit
 
 # defining an exploit module class
 class SomeExploit(Exploit):
@@ -72,10 +75,13 @@ class SomeExploit(Exploit):
 """
 ----------------------------
 GATHER MODULE EXAMPLE
+
+Gather modules belong in the path:
+simple5ploit/modules/gather
 ----------------------------
 """
 # importing the parent gather module class
-from modules.gather.internal.base import Gather
+from .internal.base import Gather
 
 # defining a gather module class
 class SomeGatherModule(Gather):
