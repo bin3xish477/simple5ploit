@@ -84,7 +84,7 @@ class SomeExploit(Exploit):
 GATHER MODULE EXAMPLE
 
 Gather modules belong in the path:
-simple5ploit/modules/gather
+simple5ploit/simple5ploit/modules/gather
 ----------------------------
 """
 # importing the parent gather module class
