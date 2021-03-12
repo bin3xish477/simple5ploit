@@ -49,7 +49,7 @@ class cli:
         print()
 
     def select(self, script):
-        mod = __import__(f"modules.gather.{script}", fromlist=["exp"])
+        mod = __import__(f"simple5ploit.modules.gather.{script}", fromlist=["exp"])
         gather_class = [c for (_,c) in getmembers(mod, isclass)
                         if issubclass(c, Gather) & (c is not Gather)][0]
         self.script = None
@@ -66,6 +66,7 @@ class cli:
             "unset": gather_args_dict,
             "sh": None,
             "run": None,
+            "get": None,
             "cls": None,
             "back": None,
             "exit": None
@@ -79,6 +80,7 @@ class cli:
             "unset": "unset value",
             "sh": "run shell command on local system",
             "run": "run script",
+            "get": "install module dependencies",
             "cls": "clear screen",
             "back": "go back to previous menu",
             "exit": "exit program"
@@ -141,9 +143,20 @@ class cli:
                     try:
                         cls.run()
                     except NotImplementedError:
-                        print("[X] This exploits `run` function has not been implemented")
+                        print("[X]::This exploits `run` function has not been implemented")
+                    except ImportError:
+                        print("[X]::An import error occured. Run `get` to install exploit dependencies")
                     except:
-                        print("[X] An error occurred while running the exploit")
+                        print("[X]::An error occurred while running the exploit")
+            elif selected == "get":
+                if cls.pip_dependencies:
+                    print("[*]::Fetching pip dependencies")
+                    from pip._internal.cli.main import main as pip_main
+                    [pip_main(["install", pkg]) for pkg in cls.pip_dependencies]
+                    print("\n[*]::Dependencies successfully installed")
+                    print("[!]::Try re-running the exploit!!!")
+                else:
+                    print("NOTE::This module does not require any dependencies")
             elif selected.startswith("sh"):
                 cmd = selected.split()[1:]
                 if cmd:

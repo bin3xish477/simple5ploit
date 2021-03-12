@@ -10,9 +10,9 @@ from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
 from os import listdir
 from os import sep
-from .__init__ import __version__
-from .__init__ import __author__
-from .__init__ import __repo__
+from simple5ploit.__init__ import __version__
+from simple5ploit.__init__ import __author__
+from simple5ploit.__init__ import __repo__
 
 
 banner = f"""
@@ -46,14 +46,14 @@ def main(args):
         serve(args.server)
         return
     if args.list_modules:
-        print("\n# Available Modules #\n")
+        print("\n--- Available Modules ---")
         for module in modules:
-            print(f"\t\u2022 {module}")
+            print(' '*3, f"\u2022 {module}")
         return
     
     if args.module:
         if args.module not in modules:
-            print(f"[X] {args.module} is not a valid module, " \
+            print(f"[X]::{args.module} is not a valid module, " \
                     "use the `-l` arg to list available modules")
             return
         if "exploit::" in args.module:

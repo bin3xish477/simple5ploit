@@ -12,4 +12,8 @@ class Gather:
 		self.pip_dependencies = []
 
 	def run(self):
-		raise NotImplementedError
+            """
+            If implemented, this function should contain
+            the scripts code to run against target
+            """
+            raise NotImplementedError
