@@ -32,7 +32,7 @@ Show images of simple5ploit here!!!
 EXPLOIT MODULE EXAMPLE
 
 Exploit modules belong in the path:
-simple5ploit/modules/exploits
+simple5ploit/simple5ploit/modules/exploits
 -------------------------------
 """
 # importing the parent exploit class
@@ -63,6 +63,13 @@ class SomeExploit(Exploit):
     for arg in self.args:
       self.__dict__[arg] = "N/a"
       
+  def check(self):
+    """
+    If implemented, this function checks if the target
+    is vulnerable to the exploit
+    """
+    raise NotImplementedError
+        
   def run(self):
     """
     This function is where the exploit code should be placed.
