@@ -29,11 +29,11 @@ class cli:
         "exit": "exit program"
     }
 
-    def __init__(self, script=None):
+    def __init__(self, script):
         if script:
             self.script = script.replace("gather::", '')
         else:
-            self.script = script
+            self.script = None
         self.gather_scripts_path = dirname(abspath(__file__)).replace("/internal", "")
         self.scripts = [f.rstrip(".py")
             for f in listdir(self.gather_scripts_path)
