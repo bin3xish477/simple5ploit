@@ -66,6 +66,7 @@ class cli:
             "unset": gather_args_dict,
             "sh": None,
             "run": None,
+            "depends": None,
             "get": None,
             "cls": None,
             "back": None,
@@ -80,6 +81,7 @@ class cli:
             "unset": "unset value",
             "sh": "run shell command on local system",
             "run": "run script",
+            "depends": "shows the dependencies needed for this script",
             "get": "install module dependencies",
             "cls": "clear screen",
             "back": "go back to previous menu",
@@ -125,7 +127,7 @@ class cli:
             elif selected.startswith("set"):
                 selected = selected.split()
                 if len(selected) < 2:
-                    print("the `set` command must be proceeded with an argument and value")
+                    print("[!!]::the `set` command must be proceeded with an argument and value")
                     print("\nexample:\n\tset url http://localhost:8080")
                     continue
                 arg, val = selected[1].strip(), " ".join(selected[2:])
@@ -150,13 +152,13 @@ class cli:
                         print("[X]::An error occurred while running the exploit")
             elif selected == "get":
                 if cls.pip_dependencies:
-                    print("[*]::Fetching pip dependencies")
+                    print("[**]::fetching pip dependencies")
                     from pip._internal.cli.main import main as pip_main
                     [pip_main(["install", pkg]) for pkg in cls.pip_dependencies]
-                    print("\n[*]::Dependencies successfully installed")
-                    print("[!]::Try re-running the exploit!!!")
+                    print("\n[**]::pip dependencies successfully installed")
+                    print("[!!]::try re-running the exploit!!!")
                 else:
-                    print("NOTE::This module does not require any dependencies")
+                    print("[NOTE]::this module does not require any dependencies")
             elif selected.startswith("sh"):
                 cmd = selected.split()[1:]
                 if cmd:
@@ -164,10 +166,10 @@ class cli:
                         out = sh(cmd, capture_output=True).stdout
                     except:
                         cmd = ' '.join(cmd)
-                        print(f"unable to run command: `{cmd}`")
+                        print(f"[X]::unable to run command: `{cmd}`")
                         continue
                     print(out.decode("utf8"))
-                else: print("`sh` command used but no shell command was specified")
+                else: print("[!!]::`sh` command used but no shell command was specified")
             elif selected == "cls":
                 print("\n"*75)
             elif selected == "back":
@@ -176,7 +178,7 @@ class cli:
                 print("❌❌❌ Goodbye ❌❌❌")
                 exit(0)
             else:
-                print(f"`{selected}` is not a valid command! Type `help` for help menu")
+                print(f"[X]::`{selected}` is not a valid command! Type `help` for help menu")
 
     def help(self):
         print(self._help_)
@@ -225,11 +227,11 @@ class cli:
                 elif selected.startswith("select"):
                     selected = selected.split()
                     if len(selected) == 1 or selected[-1] == "":
-                        print("Must provide an exploit by name to use, try `show` command")
+                        print("[!!]::must provide an exploit by name to use, try `show` command")
                         continue
                     script = selected[-1].strip()
                     if script not in self.scripts:
-                        print(f"{exploit} is not a valid exploit, try `show` command")
+                        print(f"[X]::{exploit} is not a valid exploit, try `show` command")
                         continue
                     self.select(script)
                 elif selected == "help":
@@ -244,10 +246,10 @@ class cli:
                             out = sh(cmd, capture_output=True).stdout
                         except:
                             cmd = ' '.join(cmd)
-                            print(f"unable to run command: `{cmd}`")
+                            print(f"[X]::unable to run command: `{cmd}`")
                             continue
                         print(out.decode("utf8"))
-                    else: print("`sh` command used but no shell command was specified")
+                    else: print("[!!]::`sh` command used but no shell command was specified")
                 elif selected == "cls":
                     print("\n"*75)
                 elif selected in ("back"):
@@ -256,6 +258,6 @@ class cli:
                     print("❌❌❌ Goodbye ❌❌❌")
                     exit(0)
                 else:
-                    print(f"`{selected}` is not a valid command! Type `help` for help menu")
+                    print(f"[X]::`{selected}` is not a valid command! Type `help` for help menu")
             else:
                 self.select(script=self.script)
