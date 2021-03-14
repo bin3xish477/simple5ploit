@@ -29,11 +29,11 @@ class cli:
         "exit": "exit program"
     }
 
-    def __init__(self, script):
+    def __init__(self, script=None):
         if script:
             self.script = script.replace("gather::", '')
         else:
-            self.script = None
+            self.script = script
         self.gather_scripts_path = dirname(abspath(__file__)).replace("/internal", "")
         self.scripts = [f.rstrip(".py")
             for f in listdir(self.gather_scripts_path)
@@ -145,11 +145,11 @@ class cli:
                     try:
                         cls.run()
                     except NotImplementedError:
-                        print("[X]::This exploits `run` function has not been implemented")
+                        print("[XX]::This exploits `run` function has not been implemented")
                     except ImportError:
-                        print("[X]::An import error occured. Run `get` to install exploit dependencies")
+                        print("[XX]::An import error occured. Run `get` to install exploit dependencies")
                     except:
-                        print("[X]::An error occurred while running the exploit")
+                        print("[XX]::An error occurred while running the exploit")
             elif selected == "get":
                 if cls.pip_dependencies:
                     print("[**]::fetching pip dependencies")
@@ -166,7 +166,7 @@ class cli:
                         out = sh(cmd, capture_output=True).stdout
                     except:
                         cmd = ' '.join(cmd)
-                        print(f"[X]::unable to run command: `{cmd}`")
+                        print(f"[XX]::unable to run command: `{cmd}`")
                         continue
                     print(out.decode("utf8"))
                 else: print("[!!]::`sh` command used but no shell command was specified")
@@ -219,11 +219,17 @@ class cli:
                     self.list()
                 elif selected.startswith("search"):
                     s = ' '.join(selected.split()[1:])
-                    print("Matched Scripts:")
+                    matched_scripts = []
                     for script in self.scripts:
                         if s in script:
-                            print(f"\t* {script}")
-                    print()
+                            matched_scripts.append(script)
+                    if matched_scripts:
+                        print("Matched Scripts:")
+                        for script in matched_scripts:
+                                print(f"\t* {script}")
+                        print()
+                    else:
+                        print(f"[!!]::no script names matching: `{s}`")
                 elif selected.startswith("select"):
                     selected = selected.split()
                     if len(selected) == 1 or selected[-1] == "":
@@ -231,7 +237,7 @@ class cli:
                         continue
                     script = selected[-1].strip()
                     if script not in self.scripts:
-                        print(f"[X]::{exploit} is not a valid exploit, try `show` command")
+                        print(f"[XX]::{exploit} is not a valid exploit, try `show` command")
                         continue
                     self.select(script)
                 elif selected == "help":
@@ -246,7 +252,7 @@ class cli:
                             out = sh(cmd, capture_output=True).stdout
                         except:
                             cmd = ' '.join(cmd)
-                            print(f"[X]::unable to run command: `{cmd}`")
+                            print(f"[XX]::unable to run command: `{cmd}`")
                             continue
                         print(out.decode("utf8"))
                     else: print("[!!]::`sh` command used but no shell command was specified")
@@ -258,6 +264,6 @@ class cli:
                     print("❌❌❌ Goodbye ❌❌❌")
                     exit(0)
                 else:
-                    print(f"[X]::`{selected}` is not a valid command! Type `help` for help menu")
+                    print(f"[XX]::`{selected}` is not a valid command! Type `help` for help menu")
             else:
                 self.select(script=self.script)

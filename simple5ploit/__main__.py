@@ -30,9 +30,9 @@ banner = f"""
          \033[31;1;4mVersion\033[0m: {__version__}"""
 
 menu = """
-\t [1] Exploits
-\t [2] Gather
-\t [3] Exit
+\t {1} Exploits
+\t {2} Gather
+\t {3} Exit
 """
 
 def main(args):
@@ -62,7 +62,7 @@ def main(args):
             gather_cli(script=args.module).init()
     if not args.quite:
         print(banner)
-    options = WordCompleter([str(i) for i in range(1, 4)], ignore_case=True)
+    options = WordCompleter(["exploits", "gather", "exit"], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
     })
@@ -85,17 +85,11 @@ def main(args):
 
         if selected == "": continue
 
-        try:
-            selected = int(selected)
-        except ValueError:
-            print("[‼] Invalid option")
-            continue
-
-        if selected == 1:
+        elif selected == "exploits":
             exploit_cli().init()
-        elif selected == 2:
+        elif selected == "gather":
             gather_cli().init()
-        elif selected == 3:
+        elif selected == "exit":
             print("❌❌❌ Goodbye ❌❌❌")
             break
         else:
