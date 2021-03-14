@@ -123,7 +123,7 @@ class cli:
                         tablefmt="fancy_grid")
                 print(table)
             elif selected.startswith("unset"):
-                cls.__dict__[select.split()[-1].strip()] = ""
+                cls.__dict__[selected.split()[-1].strip()] = "N/a"
             elif selected.startswith("set"):
                 selected = selected.split()
                 if len(selected) < 2:
