@@ -30,9 +30,9 @@ banner = f"""
          \033[31;1;4mVersion\033[0m: {__version__}"""
 
 menu = """
-\t {1} Exploits
-\t {2} Gather
-\t {3} Exit
+\t 1) exploits
+\t 2) gather
+\t 3) exit
 """
 
 def main(args):
