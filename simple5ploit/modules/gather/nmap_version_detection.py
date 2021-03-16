@@ -23,9 +23,10 @@ class NmapVersionDetection(Gather):
             from nmap3.exceptions import NmapNotInstalledError
             result = Nmap().nmap_version_detection(self.args["host"])
             if self.args["to_file"]:
-                with open("version_detection_output.json", "w") as fd:
+                with open(f"{self.args['host']}_version_results.json", "w") as fd:
+                    print("[**]::writing output to file")
                     fd.write(result)
             else: print(result)
         except NmapNotInstalledError:
-            print("[!!!] Nmap must be installed in order to use Nmap modules")
+            print("[!!]::Nmap must be installed in order to use Nmap modules")
             return
