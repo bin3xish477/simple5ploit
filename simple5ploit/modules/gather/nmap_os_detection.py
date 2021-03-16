@@ -7,11 +7,11 @@ class NnmapOSDetection(Gather):
         self.prompt = "(NmapOSDetection) : "
         self.args = {
             "host":
-                { "description": "the target machine (hostname|IP)"
+                { "description": "the target machine (hostname|IP)",
                     "required": True },
             "to_file":
-                "description": "save nmap JSON output to file, default=False",
-                "required": False }
+                { "description": "save nmap JSON output to file, default=False",
+                    "required": False }
         }
         
         for arg in self.args.keys():

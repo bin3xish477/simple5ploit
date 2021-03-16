@@ -3,7 +3,7 @@ from .internal.base import Gather
 class NmapScanTopPorts(Gather):
     def __init__(self):
         super().__init__()
-        self.prompt = "<< NmapScanTopPorts >> : "
+        self.prompt = "(NmapScanTopPorts) : "
         self.args = {
             "host":
                 { "description" : "the target machine (hostname|IP)",

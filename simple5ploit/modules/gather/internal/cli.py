@@ -145,11 +145,11 @@ class cli:
                     try:
                         cls.run()
                     except NotImplementedError:
-                        print("[XX]::This exploits `run` function has not been implemented")
+                        print("[XX]::This scripts `run` function has not been implemented")
                     except ImportError:
-                        print("[XX]::An import error occured. Run `get` to install exploit dependencies")
+                        print("[XX]::An import error occured. Run `get` to install script dependencies")
                     except:
-                        print("[XX]::An error occurred while running the exploit")
+                        print("[XX]::An error occurred while running the script")
             elif selected == "get":
                 if cls.pip_dependencies:
                     print("[**]::fetching pip dependencies")
@@ -237,7 +237,7 @@ class cli:
                         continue
                     script = selected[-1].strip()
                     if script not in self.scripts:
-                        print(f"[XX]::{exploit} is not a valid exploit, try `show` command")
+                        print(f"[XX]::{script} is not a valid exploit, try `show` command")
                         continue
                     self.select(script)
                 elif selected == "help":
