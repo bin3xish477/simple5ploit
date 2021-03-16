@@ -20,16 +20,18 @@ class NnmapOSDetection(Gather):
     def run(self):
         try:
             if geteuid() != 0:
-                print("[XX]::")
-            from nmap3 import Nmap
-            from nmap3.exceptions import NmapNotInstalledError
-            result = Nmap().nmap_os_detection(self.args["host"])
-            if self.args["to_file"]:
-                with open(f"{self.args['host']}_os_detection.json", "w") as fd:
-                    print("[**]::writing output to file")
-                    fd.write(result)
+                print("[!!]::Nmap version detection scan requires `root` privileges")
+                return
             else:
-                print(result)
+                from nmap3 import Nmap
+                from nmap3.exceptions import NmapNotInstalledError
+                result = Nmap().nmap_os_detection(self.args["host"])
+                if self.args["to_file"]:
+                    with open(f"{self.args['host']}_os_detection.json", "w") as fd:
+                        print("[**]::writing output to file")
+                        fd.write(result)
+                else:
+                    print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be intstalled in order to use Nmap modules")
             return
