@@ -12,13 +12,31 @@ python3 -m pip install simple5ploit
 
 ### Simple5ploit's Interface
 
-**simple5ploit's Main Interface**
+**simple5ploit: Main Interface**
 
 ![simple5ploit main interface](images/simple5ploit_main_interface.PNG)
 
-**simple5ploit's Autotab Completion Capabilites**
+**simple5ploit: CLI Help Menu**
+
+```
+usage: python3 -m simple5ploit [-h] [-q] [-l] [-m MODULE] [-s PORT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -q, --quite           don't print simple5ploit banner
+  -l, --list-modules    list all available modules
+  -m MODULE, --module MODULE
+                        specify module to load
+  -s PORT, --server PORT
+                        HTTP server using `http.server` module
+```
+**simple5ploit: Autotab Completion Capabilites**
 
 ![simple5ploit autotab completion](images/simple5ploit_autotab_completion.PNG)
+
+**simple5ploit: Listing And Loading Directly Into Modules**
+
+![simple5ploit list and load available modules](images/simple5ploit_list_load_modules.PNG)
 
 ### Contributing to Simple5ploit
 
