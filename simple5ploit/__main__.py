@@ -43,7 +43,10 @@ def main(args):
     gather_modules  = [ f"gather::{f}" for f in listdir(gather_path) if isfile(f"{gather_path}{sep}{f}") ]
     modules = list(map(lambda s: s.rstrip(".py"), exploit_modules + gather_modules))
     if args.server:
-        serve(args.server)
+        try:
+            serve(args.server)
+        except KeyboardInterrupt:
+            print("❌ Goodbye ❌")
         return
     if args.list_modules:
         print("\n--- Available Modules ---")

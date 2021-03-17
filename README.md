@@ -167,4 +167,4 @@ Quickly launch a Python3 HTTP server with:
 simple5ploit -s [port]
 ```
 
-`[simple5ploit HTTP Server](images/simple5ploit_http_server.PNG)
+![simple5ploit HTTP Server](images/simple5ploit_http_server.PNG)

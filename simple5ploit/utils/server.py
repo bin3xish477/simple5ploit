@@ -10,5 +10,6 @@ def serve(port: int):
         port = 8888
     Handler = SimpleHTTPRequestHandler
     with TCPServer(("", port), Handler) as httpd:
-        print(f"[+] server running at http://localhost:{port}")
+        print(f"[**]::server running at http://localhost:{port}")
+        print(f"[**]::press (CTRL+C) to stop server...")
         httpd.serve_forever()
