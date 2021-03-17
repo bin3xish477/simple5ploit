@@ -12,7 +12,7 @@ python3 -m pip install simple5ploit
 
 ### Simple5ploit's Interface
 
-Show images of simple5ploit here!!!
+Show GIF images of simple5ploit here!!!
 - show autocompletion
 - show table output from help, info, and show commands
 
