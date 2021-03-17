@@ -44,7 +44,7 @@ optional arguments:
 2. Watch this [video](https://www.youtube.com/watch?v=nT8KGYVurIU) on how to fork and make pull requests if you don't know how to do so already
 3. Make a pull request with your exploit or gather module and I'll add your exploit or gather module to simple5ploit
 
-### Creating an Exploit/Gather Module
+### Creating an Exploit Module
 
 ```python
 
@@ -104,8 +104,11 @@ class SomeExploit(Exploit):
     """
     pass
     
-# ***************************************************************************************************
-    
+```
+
+### Creating a Gather Module
+
+```python3    
 """
 ----------------------------
 GATHER MODULE EXAMPLE
@@ -163,3 +166,5 @@ Quickly launch a Python3 HTTP server with:
 ```
 simple5ploit -s [port]
 ```
+
+`[simple5ploit HTTP Server](images/simple5ploit_http_server.PNG)
