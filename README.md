@@ -34,7 +34,7 @@ optional arguments:
 
 ![simple5ploit autotab completion](images/simple5ploit_autotab_completion.PNG)
 
-**simple5ploit: Listing And Loading Directly Into Modules**
+**simple5ploit: Listing Available Modules And Loading Directly Into Them**
 
 ![simple5ploit list and load available modules](images/simple5ploit_list_load_modules.PNG)
 
