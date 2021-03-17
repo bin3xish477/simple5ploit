@@ -3,6 +3,8 @@
 
 ### Setup
 
+**NOTE: I haven't upload ths project to PYPI just yet**
+
 ```
 python3 -m pip install simple5ploit
 ```
