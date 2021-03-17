@@ -77,10 +77,10 @@ def main(args):
                     complete_while_typing=False
             ).strip()
         except KeyboardInterrupt:
-            print("Press [CTRL+D] to exit")
+            print("[!!]::press (CTRL+D) to exit")
             continue
         except EOFError:
-            print("❌❌❌ Goodbye ❌❌❌")
+            print("❌ Goodbye ❌")
             break
 
         if selected == "": continue
@@ -90,7 +90,7 @@ def main(args):
         elif selected == "gather":
             gather_cli().init()
         elif selected == "exit":
-            print("❌❌❌ Goodbye ❌❌❌")
+            print("❌ Goodbye ❌")
             break
         else:
             print("[‼] Invalid option")

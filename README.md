@@ -12,9 +12,13 @@ python3 -m pip install simple5ploit
 
 ### Simple5ploit's Interface
 
-Show GIF images of simple5ploit here!!!
-- show autocompletion
-- show table output from help, info, and show commands
+**simple5ploit's Main Interface**
+
+![simple5ploit main interface](images/simple5ploit_main_interface.PNG)
+
+**simple5ploit's Autotab Completion Capabilites**
+
+![simple5ploit autotab completion](images/simple5ploit_autotab_completion.PNG)
 
 ### Contributing to Simple5ploit
 
@@ -23,7 +27,6 @@ Show GIF images of simple5ploit here!!!
 3. Make a pull request with your exploit or gather module and I'll add your exploit or gather module to simple5ploit
 
 ### Creating an Exploit/Gather Module
-
 
 ```python
 
@@ -43,6 +46,12 @@ class SomeExploit(Exploit):
   def __init__(self):
     # exploit module custom prompt
     self.prompt = "[CustomExploitPrompt] :> "
+
+    # exploits pip dependencies
+    self.pip_dependencies = [
+      "requests",
+      "impacket"
+    ]
     
     # exploit module information dict
     self.info = {
@@ -95,6 +104,12 @@ class SomeGatherModule(Gather):
   def __init__(self):
     # gather module custom prompt
     self.prompt = "[CustomPrompt] % "
+
+    # exploits pip dependencies
+    self.pip_dependencies = [
+      "psutil",
+      "pefile"
+    ]
     
     # gather module information dict
     self.info = {
@@ -125,8 +140,8 @@ class SomeGatherModule(Gather):
 
 ### Simple5ploit Server
 
-Quickly launch a Python HTTP server with:
+Quickly launch a Python3 HTTP server with:
 
 ```
-simple5plit -s [port]
+simple5ploit -s [port]
 ```

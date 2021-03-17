@@ -99,10 +99,10 @@ class cli:
                     complete_while_typing=False
                 ).strip()
             except KeyboardInterrupt:
-                print("Press [CTRL+D] to exit")
+                print("[!!]::press (CTRL+D) to exit")
                 continue
             except EOFError:
-                print("❌❌❌ Goodbye ❌❌❌")
+                print("❌ Goodbye ❌")
                 exit(1)
 
             if selected == "help":
@@ -185,7 +185,7 @@ class cli:
             elif selected == "back":
                 break
             elif selected == "exit":
-                print("❌❌❌ Goodbye ❌❌❌")
+                print("❌ Goodbye ❌")
                 exit(0)
             else:
                 print(f"[X]::`{selected}` is not a valid command! Type `help` for help menu")
@@ -219,10 +219,10 @@ class cli:
                         completer=menu,
                     ).strip()
                 except KeyboardInterrupt:
-                    print("Press [CTRL+D] to exit")
+                    print("[!!]::press (CTRL+D) to exit")
                     continue
                 except EOFError:
-                    print("❌❌❌ Goodbye ❌❌❌")
+                    print("❌ Goodbye ❌")
                     exit(1)
 
                 if selected == "list":
@@ -271,7 +271,7 @@ class cli:
                 elif selected in ("back"):
                     break
                 elif selected == "exit":
-                    print("❌❌❌ Goodbye ❌❌❌")
+                    print("❌ Goodbye ❌")
                     exit(0)
                 else:
                     print(f"[XX]::`{selected}` is not a valid command! Type `help` for help menu")
