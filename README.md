@@ -46,16 +46,9 @@ optional arguments:
 
 ### Creating an Exploit Module
 
+**NOTE**: all exploit modules created should exist in the path: `simple5ploit/simple5ploit/modules/exploits` and must end with a `.py` extension!!!
+
 ```python
-
-"""
--------------------------------
-EXPLOIT MODULE EXAMPLE
-
-Exploit modules belong in the path:
-simple5ploit/simple5ploit/modules/exploits
--------------------------------
-"""
 # importing the parent exploit class
 from .internal.base import Exploit
 
@@ -108,15 +101,9 @@ class SomeExploit(Exploit):
 
 ### Creating a Gather Module
 
-```python3    
-"""
-----------------------------
-GATHER MODULE EXAMPLE
+**NOTE**: all gather modules created should exist in the path: `simple5ploit/simple5ploit/modules/gather` and must end with a `.py` extension!!!
 
-Gather modules belong in the path:
-simple5ploit/simple5ploit/modules/gather
-----------------------------
-"""
+```python3
 # importing the parent gather module class
 from .internal.base import Gather
 
