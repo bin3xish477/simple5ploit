@@ -3,10 +3,18 @@
 
 ### Setup
 
-**NOTE: I haven't upload ths project to PYPI just yet**
+**NOTE: I haven't upload ths project to PYPI just yet this `pip install` doesn't work.**
 
 ```
 python3 -m pip install simple5ploit
+```
+
+**OR**
+
+```
+git clone https://github.com/binexisHATT/simple5ploit
+cd simple5ploit
+python3 -m simple5ploit
 ```
 
 - built with `flit` and uploaded to test.pyp.org with `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
