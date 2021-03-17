@@ -60,7 +60,7 @@ class SomeExploit(Exploit):
     
     # initializing class variables for exploit arguments with values set to `N/a`
     # ::they could also be set to empty string
-    for arg in self.args:
+    for arg in self.args.keys():
       self.__dict__[arg] = "N/a"
       
   def check(self):
@@ -112,7 +112,7 @@ class SomeGatherModule(Gather):
     
     # initializing class variables for script arguments with values set to `N/a`
     # ::they could also be set to empty string
-    for arg in self.args:
+    for arg in self.args.keys():
       self.__dict__[arg] = "N/a"
       
   def run(self):
