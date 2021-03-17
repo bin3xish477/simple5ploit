@@ -1,5 +1,6 @@
 from .internal.base import Gather
 from os import geteuid
+from json import dumps
 
 class NnmapOSDetection(Gather):
     def __init__(self):
@@ -18,20 +19,15 @@ class NnmapOSDetection(Gather):
             self.__dict__[arg] = "N/a"
 
     def run(self):
+        from nmap3 import Nmap
+        from nmap3.exceptions import NmapNotInstalledError
         try:
-            if geteuid() != 0:
-                print("[!!]::Nmap version detection scan requires `root` privileges")
-                return
-            else:
-                from nmap3 import Nmap
-                from nmap3.exceptions import NmapNotInstalledError
-                result = Nmap().nmap_os_detection(self.args["host"])
-                if self.args["to_file"]:
-                    with open(f"{self.args['host']}_os_detection.json", "w") as fd:
-                        print("[**]::writing output to file")
-                        fd.write(result)
-                else:
-                    print(result)
+            result = dumps(Nmap().nmap_os_detection(self.__dict__["host"]))
+            if self.__dict__["to_file"].strip().lower() == "true":
+                with open(f"{self.__dict__['host']}_os_detection.json", "w") as fd:
+                    fd.write(result)
+                    print("[**]::nmap results written to file")
+            else: print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be intstalled in order to use Nmap modules")
             return

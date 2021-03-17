@@ -145,11 +145,21 @@ class cli:
                     try:
                         cls.run()
                     except NotImplementedError:
-                        print("[XX]::This scripts `run` function has not been implemented")
-                    except ImportError:
-                        print("[XX]::An import error occured. Run `get` to install script dependencies")
-                    except:
-                        print("[XX]::An error occurred while running the script")
+                        print("[XX]::this scripts `run` function has not been implemented")
+                    except ImportError as e:
+                        print(e)
+                        print("[!!]::an import error occured. Run command, `depends`, to get script dependencies")
+                        print("[**]::then run the command, `get`, to install the required dependencies")
+                    except Exception as e:
+                        print(e)
+                        print("[XX]::an error occurred while running the script")
+            elif selected == "depends":
+                if cls.pip_dependencies:
+                    print("[************  Dependencies *************]")
+                    for dependency in cls.pip_dependencies:
+                        print(f"\t\u2022 {dependency}")
+                else:
+                    print("[!!]::script has no dependencies")
             elif selected == "get":
                 if cls.pip_dependencies:
                     print("[**]::fetching pip dependencies")

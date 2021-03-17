@@ -1,4 +1,5 @@
 from .internal.base import Gather
+from json import dumps
 
 class NmapScanTopPorts(Gather):
     def __init__(self):
@@ -17,14 +18,14 @@ class NmapScanTopPorts(Gather):
             self.__dict__[arg] = "N/a"
 
     def run(self):
+        from nmap3 import Nmap
+        from nmap3.exceptions import Nmap
         try:
-            from nmap3 import Nmap
-            from nmap3.exceptions import Nmap
-            result = Nmap().scan_top_ports(self.args["host"])
-            if self.args["to_file"]:
-                with open(f"{self.args['host']}_top_ports_results.json", "w") as fd:
-                    print("[**]::writing output to file")
+            result = Nmap().scan_top_ports(self.__dict__["host"])
+            if self.__dict__["to_file"].strip().lower() == "true":
+                with open(f"{self.__dict__['host']}_top_ports_results.json", "w") as fd:
                     fd.write(result)
+                    print("[**]::nmap results written to file")
             else: print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be installed in order to use Nmap modules")
