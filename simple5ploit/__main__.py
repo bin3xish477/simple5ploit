@@ -96,7 +96,7 @@ def main(args):
             print("❌ Goodbye ❌")
             break
         else:
-            print("[‼] Invalid option")
+            print("!!]::invalid option")
 
 if __name__ == "__main__":
     parser = ArgumentParser()
