@@ -1,3 +1,5 @@
+from argparse import ArgumentParser
+
 class Gather:
 	def __init__(self):
             self.info = {
@@ -9,6 +11,7 @@ class Gather:
             # For custom prompt, default is set below
             self.prompt = "❯ "
             self.args = {}
+	    self.cli_args = ArgumentParser()
             self.pip_dependencies = []
 
 	def run(self):
