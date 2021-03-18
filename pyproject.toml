@@ -18,4 +18,4 @@ requires = [
 ]
 
 [tool.flit.scripts]
-simple5ploit = "simple5ploit:main"
+simple5ploit = "simple5ploit.__main__:main"
