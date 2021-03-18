@@ -96,14 +96,17 @@ class SomeExploit(Exploit):
   def check(self):
     """
     If implemented, this function checks if the target
-    is vulnerable to the exploit
+    is vulnerable to the exploit. If it's not implemented,
+    a ```NotImplementedError``` will be raised and handled accordingly by
+    simple5ploit's cli
     """
-    raise NotImplementedError
+    pass
         
   def run(self):
     """
     This function is where the exploit code should be placed.
-    If it's not implemented, a ```NotImplementedError``` will be raised.
+    If it's not implemented, a ```NotImplementedError``` will be raised
+    and handled accordingly by simple5ploit's cli.
     """
     pass
     
