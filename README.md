@@ -6,7 +6,7 @@
 **NOTE: I haven't upload ths project to PYPI just yet this `pip install` doesn't work.**
 
 ```
-python3 -m pip install simple5ploit
+pip3 install simple5ploit
 ```
 
 **OR**
