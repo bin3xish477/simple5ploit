@@ -16,3 +16,6 @@ requires = [
   "python3-nmap",
   "pwncat"
 ]
+
+[tool.flit.scripts]
+simple5ploit = "simple5ploit:main"
