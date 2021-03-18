@@ -14,7 +14,6 @@ requires = [
   "prompt_toolkit",
   "tabulate",
   "python3-nmap",
-  "pwncat"
 ]
 
 [tool.flit.scripts]
