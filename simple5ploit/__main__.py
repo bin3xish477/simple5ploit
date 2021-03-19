@@ -48,12 +48,6 @@ def main(args):
         except KeyboardInterrupt:
             print("❌ Goodbye ❌")
         return
-    if args.list_modules:
-        print("\n--- Available Modules ---")
-        for module in modules:
-            print(' '*3, f"\u2022 {module}")
-        return
-    
     if args.module:
         if args.module not in modules:
             print(f"[X]::{args.module} is not a valid module, " \
@@ -63,6 +57,11 @@ def main(args):
             exploit_cli(exploit=args.module).init()
         else:
             gather_cli(script=args.module).init()
+    if args.list_modules:
+        print("\n--- Available Modules ---")
+        for module in modules:
+            print(' '*3, f"\u2022 {module}")
+        return
     if not args.quite:
         print(banner)
     options = WordCompleter(["exploits", "gather", "exit"], ignore_case=True)

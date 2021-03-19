@@ -151,8 +151,7 @@ class cli:
                         print("[!!]::an import error occured. Run command, `depends`, to get script dependencies")
                         print("[**]::then run the command, `get`, to install the required dependencies")
                     except Exception as e:
-                        print(e)
-                        print("[XX]::an error occurred while running the script")
+                        print(f"[ERROR]::{e}")
             elif selected == "depends":
                 if cls.pip_dependencies:
                     print("[************  Dependencies *************]")
