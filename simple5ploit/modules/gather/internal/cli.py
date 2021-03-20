@@ -177,8 +177,13 @@ class cli:
                         cmd = ' '.join(cmd)
                         print(f"[XX]::unable to run command: `{cmd}`")
                         continue
-                    print(out.decode("utf8"))
-                else: print("[!!]::`sh` command used but no shell command was specified")
+                    try:
+                       print(out.decode("utf8"))
+                    except UnicodeDecodeError:
+                        print("[XX]::unable to decode command output!")
+                        continue
+                else:
+                    print("[!!]::`sh` command used but no shell command was specified")
             elif selected == "cls":
                 print("\n"*75)
             elif selected == "back":
@@ -244,6 +249,9 @@ class cli:
                     if len(selected) == 1 or selected[-1] == "":
                         print("[!!]::must provide an exploit by name to use, try `show` command")
                         continue
+                    elif len(selected) > 2:
+                        print("[!!]::only one gather module can be selected")
+                        continue
                     script = selected[-1].strip()
                     if script not in self.scripts:
                         print(f"[XX]::{script} is not a valid exploit, try `show` command")
@@ -263,7 +271,11 @@ class cli:
                             cmd = ' '.join(cmd)
                             print(f"[XX]::unable to run command: `{cmd}`")
                             continue
-                        print(out.decode("utf8"))
+                        try:
+                            print(out.decode("utf8"))
+                        except UnicodeDecodeError:
+                            print("[XX]::unable to decode command output")
+                            continue
                     else: print("[!!]::`sh` command used but no shell command was specified")
                 elif selected == "cls":
                     print("\n"*75)

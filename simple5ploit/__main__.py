@@ -95,7 +95,7 @@ def main(args):
             print("❌ Goodbye ❌")
             break
         else:
-            print("!!]::invalid option")
+            print("[!!]::invalid option")
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -104,4 +104,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--module", help="specify module to load")
     parser.add_argument("-s", "--server", type=int, metavar="PORT",
             help="HTTP server using `http.server` module")
-    main(parser.parse_args())
+    try:
+        main(parser.parse_args())
+    except Exception:
+        print("\n[ATTENTION]::simple5ploit crashed because of an unknown exception!!")
