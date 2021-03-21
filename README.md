@@ -1,9 +1,7 @@
 # simple5ploit
-`simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts.
+`simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts. If you have any Python scripts that you would others to use, please see the instructions in the README on how to contribute to `simple5ploit`. `simple5ploit` currently doesn't have many scripts but over time I thought the cybersecurity community will build it's script repository.
 
 ### Setup
-
-**NOTE: I haven't upload ths project to PYPI just yet this `pip install` doesn't work.**
 
 ```
 pip3 install simple5ploit
@@ -16,9 +14,6 @@ git clone https://github.com/binexisHATT/simple5ploit
 cd simple5ploit
 python3 -m simple5ploit
 ```
-
-- built with `flit` and uploaded to test.pyp.org with `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
-  - `pip3 install flit && flit build`
 
 ### Simple5ploit's Interface
 
