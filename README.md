@@ -1,5 +1,5 @@
 # simple5ploit
-`simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts. If you have any Python scripts that you would others to use, please see the instructions in the README on how to contribute to `simple5ploit`. `simple5ploit` currently doesn't have many scripts but over time I thought the cybersecurity community will build it's script repository.
+`simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts. If you have any Python scripts that you would others to use, please see the instructions in the README on how to contribute to `simple5ploit`. `simple5ploit` currently doesn't have many scripts but over time I thought the cybersecurity community will help build it's script repository.
 
 ### Setup
 
