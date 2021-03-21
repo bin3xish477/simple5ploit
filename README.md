@@ -24,7 +24,7 @@ python3 -m simple5ploit
 
 **simple5ploit: Main Interface**
 
-![simple5ploit main interface](images/simple5ploit_main_interface.PNG)
+![simple5ploit main interface](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_main_interface.PNG)
 
 **simple5ploit: CLI Help Menu**
 
@@ -46,7 +46,7 @@ optional arguments:
 
 **simple5ploit: Listing Available Modules And Loading Directly Into Them**
 
-![simple5ploit list and load available modules](images/simple5ploit_list_load_modules.PNG)
+![simple5ploit list and load available modules](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_list_load_modules.PNG)
 
 ### Contributing to Simple5ploit
 
@@ -167,4 +167,4 @@ Quickly launch a Python3 HTTP server with:
 simple5ploit -s [port]
 ```
 
-![simple5ploit HTTP Server](images/simple5ploit_http_server.PNG)
+![simple5ploit HTTP Server](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_http_server.PNG)
