@@ -42,7 +42,7 @@ optional arguments:
 ```
 **simple5ploit: Autotab Completion Capabilites**
 
-![simple5ploit autotab completion](images/simple5ploit_autotab_completion.PNG)
+![simple5ploit autotab completion](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_autotab_completion.PNG)
 
 **simple5ploit: Listing Available Modules And Loading Directly Into Them**
 
