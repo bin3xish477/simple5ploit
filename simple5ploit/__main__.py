@@ -8,6 +8,8 @@ from simple5ploit.utils.server import serve
 from simple5ploit.modules.exploits.internal.cli import cli as exploit_cli
 from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
+from os.path import dirname
+from os.path import realpath
 from os import listdir
 from os import sep
 from simple5ploit.__init__ import __version__
@@ -35,8 +37,16 @@ menu = """
 \t 3) exit
 """
 
-def main(args):
-    path = __file__.replace(f"{sep}{__name__}.py", '')
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("-q", "--quite", action="store_true", help="don't print simple5ploit banner")
+    parser.add_argument("-l", "--list-modules", action="store_true", help="list all available modules")
+    parser.add_argument("-m", "--module", help="specify module to load")
+    parser.add_argument("-s", "--server", type=int, metavar="PORT",
+            help="HTTP server using `http.server` module")
+    args = parser.parse_args()
+
+    path = dirname(realpath(__file__))
     exploits_path = f"{path}{sep}modules{sep}exploits"
     gather_path   = f"{path}{sep}modules{sep}gather"
     exploit_modules = [ f"exploit::{f}" for f in listdir(exploits_path) if isfile(f"{exploits_path}{sep}{f}") ]
@@ -96,15 +106,5 @@ def main(args):
             break
         else:
             print("[!!]::invalid option")
-
 if __name__ == "__main__":
-    parser = ArgumentParser()
-    parser.add_argument("-q", "--quite", action="store_true", help="don't print simple5ploit banner")
-    parser.add_argument("-l", "--list-modules", action="store_true", help="list all available modules")
-    parser.add_argument("-m", "--module", help="specify module to load")
-    parser.add_argument("-s", "--server", type=int, metavar="PORT",
-            help="HTTP server using `http.server` module")
-    try:
-        main(parser.parse_args())
-    except Exception:
-        print("\n[ATTENTION]::simple5ploit crashed because of an unknown exception!!")
+    main()

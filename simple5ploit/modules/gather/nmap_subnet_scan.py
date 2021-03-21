@@ -11,7 +11,7 @@ class NmapSubnetScan(Gather):
                 { "description": "",
                     "required": True },
             "to_file":
-                { "description": "save nmap JSON output to file, default=False"
+                { "description": "save nmap JSON output to file, default=False",
                     "required": False }
         }
 
@@ -25,12 +25,12 @@ class NmapSubnetScan(Gather):
             if geteuid() != 0:
                 print("[!!]::nmap OS detection scan requires `root` privileges")
                 return
-            result = dumps(Nmap().nmap_subnet_scan(self.__dict__["host"]))
+            result = Nmap().nmap_subnet_scan(self.__dict__["host"])
+            print(dumps(result, indent=2))
             if self.__dict__["to_file"]:
                 with open(f"{self.__dict__['host']}_subnet", "w") as fd:
-                    fd.write(result)
+                    fd.write(dumps(result, indent=4))
                     print("[**]::nmap results written to file")
-            else: print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be installed in order to use Nmap modules")
             return

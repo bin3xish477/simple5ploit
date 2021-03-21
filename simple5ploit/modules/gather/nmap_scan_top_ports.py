@@ -22,11 +22,11 @@ class NmapScanTopPorts(Gather):
         from nmap3.exceptions import Nmap
         try:
             result = Nmap().scan_top_ports(self.__dict__["host"])
+            print(dumps(result, indent=2))
             if self.__dict__["to_file"].strip().lower() == "true":
                 with open(f"{self.__dict__['host']}_top_ports_results.json", "w") as fd:
-                    fd.write(result)
+                    fd.write(dumps(result, indent=4))
                     print("[**]::nmap results written to file")
-            else: print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be installed in order to use Nmap modules")
             return

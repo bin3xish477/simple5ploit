@@ -22,12 +22,12 @@ class NnmapOSDetection(Gather):
         from nmap3 import Nmap
         from nmap3.exceptions import NmapNotInstalledError
         try:
-            result = dumps(Nmap().nmap_os_detection(self.__dict__["host"]))
+            result = Nmap().nmap_os_detection(self.__dict__["host"])
+            print(dumps(result, indent=2))
             if self.__dict__["to_file"].strip().lower() == "true":
                 with open(f"{self.__dict__['host']}_os_detection.json", "w") as fd:
-                    fd.write(result)
+                    fd.write(dumps(result, indent=4))
                     print("[**]::nmap results written to file")
-            else: print(result)
         except NmapNotInstalledError:
             print("[!!]::Nmap must be intstalled in order to use Nmap modules")
             return
