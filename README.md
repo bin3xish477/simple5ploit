@@ -15,6 +15,15 @@ cd simple5ploit
 python3 -m simple5ploit
 ```
 
+### Run with Docker
+
+```
+git clone https://github.com/binexisHATT/simple5ploit
+cd simple5ploit
+docker build -t simple5ploit .
+docker run -it --rm --name simple5ploit-docker simple5ploit
+```
+
 ### Simple5ploit's Interface
 
 **simple5ploit: Main Interface**
