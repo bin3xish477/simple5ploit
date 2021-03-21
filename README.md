@@ -19,7 +19,7 @@ python3 -m simple5ploit
 
 **simple5ploit: Main Interface**
 
-![](https://raw.githubusercontent.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_main_interface.PNG)
+![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_main_interface.PNG)
 
 **simple5ploit: CLI Help Menu**
 
