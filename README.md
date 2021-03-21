@@ -19,7 +19,7 @@ python3 -m simple5ploit
 
 **simple5ploit: Main Interface**
 
-![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_main_interface.PNG)
+![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_main_interface.PNG?raw=True)
 
 **simple5ploit: CLI Help Menu**
 
@@ -37,11 +37,11 @@ optional arguments:
 ```
 **simple5ploit: Autotab Completion Capabilites**
 
-![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_autotab_completion.PNG)
+![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_autotab_completion.PNG?raw=True)
 
 **simple5ploit: Listing Available Modules And Loading Directly Into Them**
 
-![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_list_load_modules.PNG)
+![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_list_load_modules.PNG?raw=True)
 
 ### Contributing to Simple5ploit
 
@@ -162,4 +162,4 @@ Quickly launch a Python3 HTTP server with:
 simple5ploit -s [port]
 ```
 
-![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_http_server.PNG)
+![](https://github.com/binexisHATT/simple5ploit/blob/main/images/simple5ploit_http_server.PNG?raw=True)
