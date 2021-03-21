@@ -15,7 +15,12 @@ from os import sep
 from simple5ploit.__init__ import __version__
 from simple5ploit.__init__ import __author__
 from simple5ploit.__init__ import __repo__
+from platform import system
+from sys import exit
 
+if system() == "Windows":
+    print("[ATTENTION]::``simple5ploit` currently only runs on Linux!!")
+    exit(1)
 
 banner = f"""
   _____   _                   __         _____              __         _  _
