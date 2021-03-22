@@ -12,6 +12,7 @@ pip3 install simple5ploit
 ```
 git clone https://github.com/binexisHATT/simple5ploit
 cd simple5ploit
+python3 -m pip install -r requirements.txt
 python3 -m simple5ploit
 ```
 
