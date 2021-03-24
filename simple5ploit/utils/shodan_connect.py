@@ -4,7 +4,7 @@ from config import ConfigParser
 class ShodanConnect:
     def __init__(self):
         self.config = ConfigParser()
-        self.config.read("../secrets.ini")
+        self.config.read("../../secrets.ini")
 
     def search(self):
         pass
