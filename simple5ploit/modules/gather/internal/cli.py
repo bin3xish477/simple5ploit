@@ -4,10 +4,11 @@ from os.path import abspath
 from os.path import dirname
 from os.path import sep
 from os.path import basename
+from os.path import expanduser
 from prompt_toolkit.completion import NestedCompleter
 from prompt_toolkit.styles import Style
 from prompt_toolkit import PromptSession
-from prompt_toolkit.history import InMemoryHistory
+from prompt_toolkit.history import FileHistory
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from inspect import getmembers
 from inspect import isclass
@@ -209,9 +210,11 @@ class cli:
             "exit": None
         })
 
+        user_home = expanduser("~")
         self.session = PromptSession(
                 complete_while_typing=False,
-                auto_suggest=AutoSuggestFromHistory()
+                auto_suggest=AutoSuggestFromHistory(),
+                history=FileHistory(f"{user_home}/.simple5ploit_history")
         )
         message = [("class:prompt", "〔Gather〕❯ ")]
         while True:

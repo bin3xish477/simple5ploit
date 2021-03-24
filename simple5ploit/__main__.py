@@ -10,6 +10,8 @@ from .modules.gather.internal.cli import cli as gather_cli
 from os.path import isfile
 from os.path import dirname
 from os.path import realpath
+from os.path import exists
+from os.path import expanduser
 from os import listdir
 from os import sep
 from simple5ploit.__init__ import __version__
@@ -79,6 +81,14 @@ def main():
         return
     if not args.quite:
         print(banner)
+
+
+    # create simple5ploit history file
+    user_home = expanduser("~")
+    history_file = f"{user_home}/.simple5ploit_history"
+    if not exists(history_file):
+        with open(history_file, "w") as fd:
+            pass
     options = WordCompleter(["exploits", "gather", "exit"], ignore_case=True)
     style = Style.from_dict({
         "prompt": "#f7ff00"
