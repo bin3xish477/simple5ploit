@@ -5,7 +5,8 @@
 Will contain:
   - reverse/bind shell capabilities
   - more exploits and gather modules
-  - add Shodan and VirusTotal builtin commands
+  - built-in Shodan and VirusTotal API commands
+
 and much more!!!
 
 ### Setup
