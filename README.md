@@ -1,6 +1,13 @@
 # simple5ploit
 `simple5ploit` is an exploitation/information gathering framework designed for Python3 scripts. If you have any Python scripts that you would want others to use, please see the instructions in the README on how to contribute to `simple5ploit`. `simple5ploit` currently doesn't have many scripts but over time I thought the cybersecurity community will help build it's script repository.
 
+### Version 2.0 Is On It's Way!!!
+Will contain:
+  - reverse/bind shell capabilities
+  - more exploits and gather modules
+  - add Shodan and VirusTotal builtin commands
+and much more!!!
+
 ### Setup
 
 ```
