@@ -3,7 +3,7 @@
 
 ### Version 2.0 Is On It's Way!!!
 Will contain:
-  - reverse/bind shell capabilities
+  - reverse/bind shell capabilities implemented using `pwncat`'s API
   - more exploits and gather modules
   - built-in Shodan and VirusTotal API commands
 
