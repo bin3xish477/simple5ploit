@@ -46,11 +46,25 @@ menu = """
 
 def main():
     parser = ArgumentParser()
-    parser.add_argument("-q", "--quite", action="store_true", help="don't print simple5ploit banner")
-    parser.add_argument("-l", "--list-modules", action="store_true", help="list all available modules")
-    parser.add_argument("-m", "--module", help="specify module to load")
-    parser.add_argument("-s", "--server", type=int, metavar="PORT",
-            help="HTTP server using `http.server` module")
+    parser.add_argument(
+        "-q", "--quite",
+        action="store_true",
+        help="don't print simple5ploit banner")
+    parser.add_argument(
+        "-c", "--clear-history",
+        action="store_true",
+        help="clear simple5ploit command history file")
+    parser.add_argument(
+        "-l", "--list-modules",
+        action="store_true",
+        help="list all available modules")
+    parser.add_argument(
+        "-m", "--module",
+        help="specify module to load")
+    parser.add_argument(
+        "-s", "--server",
+        type=int, metavar="PORT",
+        help="HTTP server using `http.server` module")
     args = parser.parse_args()
 
     path = dirname(realpath(__file__))
@@ -59,6 +73,9 @@ def main():
     exploit_modules = [ f"exploit::{f}" for f in listdir(exploits_path) if isfile(f"{exploits_path}{sep}{f}") ]
     gather_modules  = [ f"gather::{f}" for f in listdir(gather_path) if isfile(f"{gather_path}{sep}{f}") ]
     modules = list(map(lambda s: s.rstrip(".py"), exploit_modules + gather_modules))
+    user_home = expanduser("~")
+    if args.clear_history:
+        open(f"{user_home}/.simple5ploit_history", "w").close()
     if args.server:
         try:
             serve(args.server)
@@ -84,7 +101,6 @@ def main():
 
 
     # create simple5ploit history file
-    user_home = expanduser("~")
     history_file = f"{user_home}/.simple5ploit_history"
     if not exists(history_file):
         with open(history_file, "w") as fd:
